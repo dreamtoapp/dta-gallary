@@ -2,7 +2,16 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #1a202c;
+  --muted-foreground: #4b5563;
+  --primary-foreground: #1a202c;
+  --sidebar-foreground: #1a202c;
+  --sidebar-accent-foreground: #1a202c;
+  --sidebar-primary-foreground: #1a202c;
+  --card-foreground: #1a202c;
+  --input: #e5e7eb;
+  --border: #d1d5db;
+  --font-arabic: 'IBM Plex Sans Arabic', Cairo, Tajawal, Arial, sans-serif;
 }
 
 @theme inline {
@@ -23,4 +32,62 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer base {
+  body {
+    color: var(--foreground);
+    background: #fff;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    color: #111827;
+    font-weight: bold;
+  }
+  .text-muted-foreground {
+    color: var(--muted-foreground) !important;
+  }
+  .heading-elegant {
+    color: #1a202c !important;
+    font-weight: 800;
+  }
+  .glass {
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .glass-dark {
+    background: #e5e7eb;
+    border: 1px solid #d1d5db;
+  }
+  .card-premium, .card-interactive {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    color: #1a202c;
+  }
+  .btn-primary, .btn-secondary, .btn-ghost {
+    color: #1a202c;
+    font-weight: 600;
+  }
+  .badge-premium {
+    background: #f3f4f6;
+    color: #1a202c;
+    border: 1px solid #e5e7eb;
+  }
+  .font-arabic {
+    font-family: var(--font-arabic) !important;
+  }
+  input, select, textarea {
+    color: #1a202c !important; /* text-gray-900 */
+    background: #fff !important;
+    border-color: #d1d5db !important; /* border-gray-300 */
+    font-weight: 500;
+  }
+  input::placeholder, select::placeholder, textarea::placeholder {
+    color: #6b7280 !important; /* text-gray-400 */
+    opacity: 1;
+  }
+  button {
+    color: #fff !important;
+    font-weight: 700;
+  }
 }
