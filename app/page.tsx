@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Image from "next/image";
+import { Card, CardHeader, CardContent, CardFooter } from "@/components/ui/card";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 // Fake client names
 const clientNames = [
@@ -84,34 +86,42 @@ export default function HomePage() {
             }}
           >
             {images.map((img) => (
-              <div
+              <Card
                 key={img.id}
-                className="rounded-2xl overflow-hidden shadow-md bg-gray-50 hover:shadow-xl transition-all duration-300 group relative"
+                className="overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group relative rounded-2xl bg-gray-50"
                 style={{ breakInside: "avoid" }}
               >
-                {/* Client name badge (top right) */}
-                <div className="absolute top-2 right-2 z-10 bg-[#1d4ed8] text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg border border-white/70">
-                  {img.client || "عميل غير معروف"}
-                </div>
-                {/* Design type badge (top left) */}
-                <div className="absolute top-2 left-2 z-10 bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg border border-white/70">
-                  {img.type}
-                </div>
-                <Image
-                  src={img.url}
-                  alt={`تصميم رقم ${img.id}`}
-                  width={img.width}
-                  height={img.height}
-                  className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"
-                  loading="lazy"
-                  placeholder="blur"
-                  blurDataURL="/public/window.svg"
-                />
-                {/* Design ID (bottom right) */}
-                <div className="absolute bottom-2 right-2 bg-black/70 text-white text-xs font-bold px-2 py-1 rounded shadow">
-                  تصميم رقم {img.id}
-                </div>
-              </div>
+                <CardHeader className="flex flex-row items-center justify-between p-3 pb-0">
+                  {/* Client Avatar/Badge */}
+                  <div className="flex items-center gap-2">
+                    <Avatar className="w-7 h-7 bg-blue-700 text-white text-xs font-bold border-2 border-white shadow">
+                      <AvatarFallback>{img.client?.slice(0,2) || "؟"}</AvatarFallback>
+                    </Avatar>
+                    <span className="text-xs font-bold text-blue-800">{img.client || "عميل غير معروف"}</span>
+                  </div>
+                  {/* Design type badge */}
+                  <span className="bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow border border-white/70">
+                    {img.type}
+                  </span>
+                </CardHeader>
+                <CardContent className="p-0">
+                  <Image
+                    src={img.url}
+                    alt={`تصميم رقم ${img.id}`}
+                    width={img.width}
+                    height={img.height}
+                    className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                    placeholder="blur"
+                    blurDataURL="/public/window.svg"
+                  />
+                </CardContent>
+                <CardFooter className="flex justify-end p-2">
+                  <span className="bg-black/70 text-white text-xs font-bold px-2 py-1 rounded shadow">
+                    تصميم رقم {img.id}
+                  </span>
+                </CardFooter>
+              </Card>
             ))}
           </div>
         </InfiniteScroll>
